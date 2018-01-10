@@ -45,12 +45,18 @@ Reconception
 
 ## Plan d'action
 ### Etudes
- * Sparming Tree
- * PVST
+ * Spanning Tree
+
+ * PVST (Per VLAN Spanning Tree)
+
  * Ethernet channel
- * HSRP
- * LACP
+
+ * HSRP (Hot Standby Router Protocol)
+
+ * LACP (Link Aggregation Control Protocol)
+
  * Théorie des graphes (Arbres binaires + Recherche en profondeur (et non pas en largeur))
+ 
  * Implémentation et paramétrage sur Cisco
 
 ### Réalisation
