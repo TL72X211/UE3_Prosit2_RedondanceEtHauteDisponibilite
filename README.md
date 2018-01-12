@@ -1,3 +1,4 @@
+
 # UE3_Prosit2_RedondanceEtHauteDisponibilite
 
 ## Equipe
@@ -57,3 +58,40 @@ Reconception
  * Réaliser une maquette des changements
  * Arbres Binaire - Langage au choix (Hacker Rank)
  * Recherche en profondeur (Hacker Rank)
+
+
+## I - Etude du Spanning-Tree
+
+
+- Architecture "redondance" = avoir une route alternative
+
+Le Spanning-Tree est un protocole de couche 2 , formalisée IEEED 802.1D, qui permet de garder une topologie physique redondante tout en créant un chemin logique unique.
+
+Le Spanning Tree à pour but d'éviter trois problèmes :
+- Tempête de broadcast (Broadcast, Frame qui tourne en boucle entre les switch)
+- Duplication de trame (Deux switchs qui émettent sur le même @MAC)
+- Instabilité de la table CAM (Duplication sur chaque Switch dans la table CAM, qui va réémettre pour trouver l'@ MAC, le recevant sur un autre switch (lui contenant des informations vides).
+
+Le spanning Tree permet donc d'identifier et bloquer logiciellement cette boucle "physique".
+
+
+https://reussirsonccna.fr/wp-content/uploads/2012/06/STP_block1.png
+
+
+Ainsi, si une panne intervient, le blocage s'annule.
+Ce chemin est établi en fonction :
+- Coût de liens entre les commutateurs
+- Ce coût est une valeur inverse à la vitesse d'un port, car un lien rapide aura un coût moins élevé qu'un lien lent.
+
+Activé sur un Switch, il envoi régulièrement des annonces (BPDU) pour adapter une éventuelle modification de la topologie sans boucle.(2 secondes par défaut)
+
+Chaque commutateur prendra un ID unique nommée 'BID' :
+- Priorité configurable (4 bits)
+- Bridge Système ID Extension (12 bits))
+- @MAC commutateur
+
+Ce BID va permettre de sélectionner le Switch principal.
+
+**FONCTIONNEMENT DE L'ALGORITHME**
+
+
