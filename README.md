@@ -9,11 +9,11 @@
 ## Mots-Clés
 
  * PVST : 
- * Boucle physique : 
- * Boucle fermée : 
- * Aggregation de lien : 
- * Arbre recouvrant : 
- * Commutateur racine : 
+ * Boucle physique : Pierre M
+ * Boucle fermée : Pierre M
+ * Agregation de lien : Nicolas
+ * Arbre couvrant : Nicolas
+ * Commutateur racine : Florian
  * Graph en arbre : 
  * HSRP (Host Standby Router Protocol) : 
  * Chemin le plus court : 
@@ -45,12 +45,12 @@ Reconception
 
 ## Plan d'action
 ### Etudes
- * Sparming Tree
- * PVST
- * Ethernet channel
- * HSRP
- * LACP
- * Théorie des graphes (Arbres binaires + Recherche en profondeur (et non pas en largeur))
+ * Spanning Tree - Pierre G + Nico (cmd)
+ * PVST - Pierre G
+ * Etherchannel - Hugo + Pierre G (cmd)
+ * HSRP - Hugo + Emilien (HSRP = old ; new = VRRP) + Nico (cmd)
+ * LACP - cf. etherchannel (Gilly)
+ * Théorie des graphes (Arbres binaires + Recherche en profondeur (et non pas en largeur)) - Nico / Max
  * Implémentation et paramétrage sur Cisco
 
 ### Réalisation
