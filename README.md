@@ -10,17 +10,17 @@
 
 ## Mots-Clés
 
- * PVST : 
- * Boucle physique : 
- * Boucle fermée : 
- * Aggregation de lien : 
- * Arbre recouvrant : 
- * Commutateur racine : 
- * Graph en arbre : 
- * HSRP (Host Standby Router Protocol) : 
- * Chemin le plus court : 
- * Tempête de diffusion : 
- * Commutatuer élu : 
+ * PVST : Per-VLAN Spanning Tree, protocole cisco permettant d'éviter les boucles
+ * Boucle physique : -
+ * Boucle fermée : -
+ * Aggregation de lien : etherchannel, utilisations de plusieurs liens physique pour simuler un lien virtuel. Permet d'augmenter la bande passante
+ * Arbre recouvrant : arbre couvrant d'un graphe en graph theory est un arbre inclus dans un graphe qui connecte tous les sommets du graphe
+ * Commutateur racine :  racine du stanning tree
+ * Graph en arbre : un graph non orienté dont 2 vertices (noeuds pour les faibles) sont connectées par un seul lien
+ * HSRP (Host Standby Router Protocol) :  protocole Cisco permettant de créé une redondance de la passerelle par défaut
+ * Chemin le plus court : -
+ * Tempête de diffusion :  émission incessante de trames dût à une boucle physique 
+ * Commutateur élu : commutateur racine
  * Tuple : liste ordonnée
 
 ## Contexte
@@ -58,7 +58,7 @@ Si A envoie un broadcast:
 
 Les deux switches reçoivent la trame et l'envoient sur tous leurs ports, la trame va donc vers l'autre switch et ils vont se la passer indéfiniment, spammant les end-users au passage
 
-![](TempeteBroadcast.png)
+![](picsNico/TempeteBroadcast.png)
 
 2 duplication de trame :
 
@@ -66,7 +66,7 @@ Si A envoie une trame vers B
 
 Les deux switches reçoivent la trame et l'envoie à la station B, la station B reçoit alors la trame en double
 
-![](dupliTrame.png)
+![](picsNico/dupliTrame.png)
 
 3 instabilité de la table CAM :
 
@@ -74,7 +74,7 @@ Si à envoie une trame vers B
 
 Au niveau des tables CAM :
 
-![](instabCAM.png)
+![](picsNico/instabCAM.png)
 
 La trame arrive sur le port 1 du switch du haut, le switch extrait l'@MAC de source et l'insère dans sa table CAM, port 1 = @MAC A. De même pour le switch du bas pour son port 3, port 3 =  @MAC A
 
@@ -126,7 +126,7 @@ On peut check cette config avec
 	2960-RG#sh run int fa0/1
 
 
-### Ethernet channel
+### Etherchannel
 
 L’objectif de l'agrégation de lien est d’augmenter la bande passante en fusionnant plusieurs liens physiques par un seul lien logique (norme IEEE 802.1AX)
 Si j’utilise 3 liens de 100Mbit/s pour en faire un lien logique, le débit sera de 300Mbit/s
@@ -144,7 +144,7 @@ Note : l'agrégation ne se fera pas si un seul port est en ON, si il est mal con
 
 modes de compatibilité avec PAgP :
 
-![](pagp.png)
+![](picsNico/pagp.png)
 
 LACP (Link Aggregation Control Protocol), protocole standard qui peut communiquer avec différents constructeurs 
 Il  utilise également 3 statuts dans sa configuration :
@@ -154,7 +154,7 @@ Passive : attend la négociation pour devenir une agrégation (= desirable)
 
 modes de compatibilité LACP
 
-![](lacp.png)
+![](picsNico/lacp.png)
 
 
 config pour le schéma précédent
@@ -206,18 +206,19 @@ Sollicitation et Router Advertisement pour IPv6
 Tous les routeurs émulent une adresse IP virtuelle qui sera utilisée comme passerelle par défaut par les équipements du LAN.
 Chaque routeur config sur HSRP avec un niveau de priorité, celui avec la priorité la plus haute sera celui actif et les autres seront en standby, si plusieurs routeurs possèdent la priorité la plus haute l"adresse IP la plus haute l'emportera
 
-LA communication entre les routeurs utilisant HSRP se fait via des paquets en multicast à l'adresse IP 224.0.0.1vers le port UDP 1985 
+La communication entre les routeurs utilisant HSRP se fait via des paquets en multicast à l'adresse IP 224.0.0.1 vers le port UDP 1985 
 Les hôtes IP du réseau LAN sont client du routeur virtuelle via l’adresse IP et l’adresse MAC émulées
 
 L’adresse MAC émulée est du type 00:00:0C:07:AC:ZZ où ZZ représente le numéro du groupe.
 
 En-tête
 
-![](entete.png)
+![](picsNico/entete.png)
 
 Champs:
 
 Version : 1 octet 
+
 Op code :  1 octet indique le type de message :
 
 * 0 hello
@@ -254,7 +255,7 @@ La commande « standby ip xxx.xxx.xxx.xxx » indique l’adresse IP virtuelle pa
 La commande « standby track xxxxxx » permet de superviser une interface et de baisser de 10 la valeur de la priorité HSRP si elle devenait Down.
 La commande « standby authentication« , permet de remplacer le mot de passe par défaut « Cisco    » (63 69 73 63 6F 00 00 00).
 
-![](HSRP.png)
+![](picsNico/HSRP.png)
 
  R1
  
