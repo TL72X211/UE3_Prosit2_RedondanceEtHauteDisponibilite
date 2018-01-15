@@ -242,6 +242,6 @@ Il existe plusieurs types d'arbres :
 - Quelconques
 - Multipolaire
 
-![](https://commons.wikimedia.org/wiki/File:Topologies_de_r%C3%A9seaux.png?uselang=fr)
+![](https://upload.wikimedia.org/wikipedia/commons/5/53/Topologies_de_r%C3%A9seaux.png)
 
 
